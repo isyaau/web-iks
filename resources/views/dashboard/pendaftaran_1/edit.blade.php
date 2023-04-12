@@ -12,7 +12,7 @@
         <h6 class="m-0 font-weight-bold text-primary">
             Edit Data {{ $anggota->nama }}
             <a
-                href="/dashboard/anggota/anggota-tk-1"
+                href="/dashboard/pendaftaran/pendaftaran-tk-1"
                 class="btn btn-sm btn-primary float-end"
                 >Batal</a
             >
@@ -32,34 +32,12 @@
             @endif
             <form
                 method="post"
-                action="/dashboard/anggota/anggota-tk-1/{{$anggota->id}}"
+                action="/dashboard/pendaftaran/pendaftaran-tk-1/{{$anggota->id}}"
                 class="my-3"
                 enctype="multipart/form-data"
             >
                 @method('put') @csrf
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select
-                        class="form-select @error('status') is-invalid @enderror"
-                        name="status"
-                        required
-                    >
-                        <option
-                            value="{{ old('status', $anggota->status) }}"
-                            selected
-                        >
-                            @if(old('status', $anggota->status)==1) Diverifikasi
-                            @else Belum Diverifikasi @endif
-                        </option>
-                        <option value="1">Diverifikasi</option>
-                        <option value="2">Belum Diverifikasi</option>
-                    </select>
-                    @error('nama')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input
@@ -140,24 +118,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="mb-3">
-                    <label for="cabang_daerah" class="form-label"
-                        >Cabang Daerah</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control @error('cabang_daerah') is-invalid @enderror"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        name="cabang_daerah"
-                        value="{{ old('cabang_daerah', $anggota->cabang_daerah) }}"
-                    />
-                    @error('cabang_daerah')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+
                 <div class="mb-3">
                     <label for="angkatan" class="form-label">Angkatan</label>
                     <input
@@ -173,24 +134,6 @@
                         {{ $message }}
                     </div>
                     @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="tingkat" class="form-label">Status</label>
-                    <select
-                        class="form-select @error('tingkat') is-invalid @enderror"
-                        name="tingkat"
-                        required
-                    >
-                        <option
-                            value="{{ old('tingkat', $anggota->tingkat) }}"
-                            selected
-                        >
-                            @if(old('tingkat', $anggota->tingkat)==1) Warga
-                            @else Pendekar @endif
-                        </option>
-                        <option value="1">Warga</option>
-                        <option value="2">Pendekar</option>
-                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label"

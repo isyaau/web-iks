@@ -61,21 +61,48 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 
 Route::get('/dashboard/index', function () {
+    if (auth()->user()->role == 1) {
+        $jumlahTingkat1 = Anggota::where('tingkat', 1)->count();
+        $jumlahTingkat1verif = Anggota::where('tingkat', 1)->where('status', 1)->count();
+        $jumlahTingkat1noverif = Anggota::where('tingkat', 1)->where('status', 2)->count();
+        $jumlahTingkat2 = Anggota::where('tingkat', 2)->count();
+        $jumlahTingkat2verif = Anggota::where('tingkat', 1)->count();
+        $jumlahTingkat2noverif = Anggota::where('tingkat', 2)->where('status', 2)->count();
+        $jumlahAnggota =  Anggota::all()->count();
+        $jumlahAnggotaverif = Anggota::all()->where('status', 1)->count();
+        $jumlahAnggotanoverif = Anggota::all()->where('status', 2)->count();
+        $jumlahAkun = Akun::all()->count();
+        $PendaftarAnggota = Anggota::orderBy('created_at', 'desc')->get();
+    } else {
+        $jumlahTingkat1 = Anggota::where('tingkat', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahTingkat1verif = Anggota::where('tingkat', 1)->where('status', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahTingkat1noverif = Anggota::where('tingkat', 1)->where('status', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahTingkat2 = Anggota::where('tingkat', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahTingkat2verif = Anggota::where('tingkat', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahTingkat2noverif = Anggota::where('tingkat', 2)->where('status', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahAnggota =  Anggota::all()->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahAnggotaverif = Anggota::all()->where('status', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahAnggotanoverif = Anggota::all()->where('status', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahAkun = Akun::all()->count();
+        $pendaftarAnggota = Anggota::where('cabang_daerah', auth()->user()->cabang_daerah)->orderBy('created_at', 'desc')->get();
+    }
     return view('dashboard.index', [
-        'jumlahTingkat1' => Anggota::where('tingkat', 1)->count(),
-        'jumlahTingkat1verif' => Anggota::where('tingkat', 1)->where('status', 1)->count(),
-        'jumlahTingkat1noverif' => Anggota::where('tingkat', 1)->where('status', 2)->count(),
-        'jumlahTingkat2' => Anggota::where('tingkat', 2)->count(),
-        'jumlahTingkat2verif' => Anggota::where('tingkat', 2)->where('status', 1)->count(),
-        'jumlahTingkat2noverif' => Anggota::where('tingkat', 2)->where('status', 2)->count(),
-        'jumlahAnggota' => Anggota::all()->count(),
-        'jumlahAnggotaverif' => Anggota::all()->where('status', 1)->count(),
-        'jumlahAnggotanoverif' => Anggota::all()->where('status', 2)->count(),
-        'jumlahAkun' => Akun::all()->count(),
-        'pendaftarAnggota' => Anggota::orderBy('created_at', 'desc')->get(),
+        'jumlahTingkat1' => $jumlahTingkat1,
+        'jumlahTingkat1verif' => $jumlahTingkat1verif,
+        'jumlahTingkat1noverif' => $jumlahTingkat1noverif,
+        'jumlahTingkat2' => $jumlahTingkat2,
+        'jumlahTingkat2verif' => $jumlahTingkat2verif,
+        'jumlahTingkat2noverif' => $jumlahTingkat2noverif,
+        'jumlahAnggota' => $jumlahAnggota,
+        'jumlahAnggotaverif' => $jumlahAnggotaverif,
+        'jumlahAnggotanoverif' => $jumlahAnggotanoverif,
+        'jumlahAkun' => $jumlahAkun,
+        'pendaftarAnggota' => $pendaftarAnggota,
 
     ]);
 })->middleware('auth');
+Route::resource('/dashboard/pendaftaran/pendaftaran-tk-1', PendaftaranSatuController::class)->middleware('auth');
+Route::resource('/dashboard/pendaftaran/pendaftaran-tk-2', PendaftaranDuaController::class)->middleware('auth');
 Route::resource('/dashboard/anggota/anggota-tk-1', AnggotaSatuController::class)->middleware('auth');
 Route::resource('/dashboard/anggota/anggota-tk-2', AnggotaDuaController::class)->middleware('auth');
 Route::resource('/dashboard/visi-misi/visi', VisiController::class)->middleware('auth');

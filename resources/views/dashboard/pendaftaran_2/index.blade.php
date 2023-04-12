@@ -1,9 +1,8 @@
 @extends('dashboard.layouts.main') @section('container')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Data Akun</h1>
+<h1 class="h3 mb-2 text-gray-800">Data Pendaftar Tingkat 2</h1>
 <p class="mb-4">
-    Data Akun yang dapat mengakses dashboard sistem akan ditampilkan pada tabel
-    dibawah ini.
+   Data Pendaftar yang masuk dengan tingkat 2 atau Pendekar akan ditampilkan pada tabel dibawah ini.
 </p>
 @if (session()->has('success'))
 <div class="d-flex justify-content-end">
@@ -25,9 +24,9 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-danger">
-            Daftar Akun
+            Daftar Pendaftar Tingkat 2
             <a
-                href="/dashboard/akun/create"
+                href="/dashboard/pendaftaran/pendaftaran-tk-2/create"
                 class="btn btn-sm btn-danger float-end"
                 >Tambah Data</a
             >
@@ -43,55 +42,51 @@
             >
                 <thead>
                     <tr>
-                        <th style="width: 20px">No</th>
+                        <th style="width: 5px">No</th>
                         <th>Nama</th>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Cabang Daerah</th>
-                        <th>Foto</th>
-                        <th style="width: 60px">Aksi</th>
+                        <th>Tempat, Tanggal Lahir</th>
+                        <th>Alamat</th>
+                        <th>Angkatan</th>
+                        <th>Cabang</th>
+                        <th>Status</th>
+                        <th style="width: 100px">Aksi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th style="width: 20px">No</th>
+                        <th style="width: 5px">No</th>
                         <th>Nama</th>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Cabang Daerah</th>
-                        <th>Foto</th>
-                        <th style="width: 60px">Aksi</th>
+                        <th>Tempat, Tanggal Lahir</th>
+                        <th>Alamat</th>
+                        <th>Angkatan</th>
+                        <th>Cabang</th>
+                        <th>Status</th>
+                        <th style="width: 100px">Aksi</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($akun as $akun)
+                    @foreach ($anggota as $anggota)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$akun->nama}}</td>
-                        <td>{{$akun->username}}</td>
+                        <td>{{$anggota->nama}}</td>
                         <td>
-                            @if($akun->role==1) Administrator
-                            @elseif($akun->role==2) Ketua Cabang @else Belum
-                            Ditentukan @endif
+                            {{$anggota->tempat_lahir}},
+                            {{\Carbon\Carbon::parse($anggota->tanggal_lahir)->format('j F Y')}}
                         </td>
-                        <td>{{$akun->cabang_daerah}}</td>
-                        <td>
-                            <img
-                                src="{{asset('storage/' . $akun->foto)}}"
-                                alt="{{$akun->foto}}"
-                                width="100px"
-                            />
-                        </td>
+                        <td>{{$anggota->alamat}}</td>
+                        <td>{{$anggota->angkatan}}</td>
+                        <td>{{$anggota->cabang_daerah}}</td>
+                        <td class="text-center text-white">{{$anggota->status}}@if($anggota->status==1)<div style="color: rgb(255, 0, 0);"><i class="bi bi-patch-check-fill"></i></div> @else <div style="color: darkgray;"><i class="bi bi-patch-check-fill"></i></div>@endif</div>{{$anggota->status}}</td>
                         <td>
                             <a
-                                href="/dashboard/akun/{{$akun->id}}/edit"
+                                href="/dashboard/pendaftaran/pendaftaran-tk-2/{{$anggota->id}}/edit"
                                 class="btn btn-sm btn-info"
                             >
                                 <i class="bi bi-pen-fill"></i
                             ></a>
 
                             <form
-                                action="/dashboard/akun/{{$akun->id}}"
+                                action="/dashboard/pendaftaran/pendaftaran-tk-2/{{$anggota->id}}"
                                 method="post"
                                 class="d-inline"
                             >
@@ -103,12 +98,12 @@
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
                             </form>
-                            <!-- <a
-                                href="/dashboard/akun/{{$akun->id}}"
+                            <a
+                                href="/dashboard/pendaftaran/pendaftaran-tk-2/{{$anggota->id}}"
                                 class="btn btn-sm btn-warning"
                             >
                                 <i class="bi bi-eye-fill"></i
-                            ></a> -->
+                            ></a>
                         </td>
                     </tr>
                     @endforeach

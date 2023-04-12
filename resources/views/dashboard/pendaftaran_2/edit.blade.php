@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.main') @section('container')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Data Pendaftar Tingkat 1</h1>
+<h1 class="h3 mb-2 text-gray-800">Data Pendaftar Tingkat 2</h1>
 <p class="mb-4">
     Silahkan ubah data pada form dibawah ini untuk melakukan update data anggota
     tingkat 1
@@ -9,11 +9,11 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">
+        <h6 class="m-0 font-weight-bold text-danger">
             Edit Data {{ $anggota->nama }}
             <a
-                href="/dashboard/anggota/anggota-tk-1"
-                class="btn btn-sm btn-primary float-end"
+                href="/dashboard/pendaftaran/pendaftaran-tk-2"
+                class="btn btn-sm btn-danger float-end"
                 >Batal</a
             >
         </h6>
@@ -32,34 +32,11 @@
             @endif
             <form
                 method="post"
-                action="/dashboard/anggota/anggota-tk-1/{{$anggota->id}}"
+                action="/dashboard/pendaftaran/pendaftaran-tk-2/{{$anggota->id}}"
                 class="my-3"
                 enctype="multipart/form-data"
             >
                 @method('put') @csrf
-                <div class="mb-3">
-                    <label for="status" class="form-label">Status</label>
-                    <select
-                        class="form-select @error('status') is-invalid @enderror"
-                        name="status"
-                        required
-                    >
-                        <option
-                            value="{{ old('status', $anggota->status) }}"
-                            selected
-                        >
-                            @if(old('status', $anggota->status)==1) Diverifikasi
-                            @else Belum Diverifikasi @endif
-                        </option>
-                        <option value="1">Diverifikasi</option>
-                        <option value="2">Belum Diverifikasi</option>
-                    </select>
-                    @error('nama')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input
@@ -140,24 +117,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="mb-3">
-                    <label for="cabang_daerah" class="form-label"
-                        >Cabang Daerah</label
-                    >
-                    <input
-                        type="text"
-                        class="form-control @error('cabang_daerah') is-invalid @enderror"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                        name="cabang_daerah"
-                        value="{{ old('cabang_daerah', $anggota->cabang_daerah) }}"
-                    />
-                    @error('cabang_daerah')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+
                 <div class="mb-3">
                     <label for="angkatan" class="form-label">Angkatan</label>
                     <input
@@ -175,23 +135,6 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="tingkat" class="form-label">Status</label>
-                    <select
-                        class="form-select @error('tingkat') is-invalid @enderror"
-                        name="tingkat"
-                        required
-                    >
-                        <option
-                            value="{{ old('tingkat', $anggota->tingkat) }}"
-                            selected
-                        >
-                            @if(old('tingkat', $anggota->tingkat)==1) Warga
-                            @else Pendekar @endif
-                        </option>
-                        <option value="1">Warga</option>
-                        <option value="2">Pendekar</option>
-                    </select>
-                </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label"
                         >Foto Setengah Badan</label
@@ -249,7 +192,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-danger">Submit</button>
             </form>
         </div>
     </div>
@@ -270,17 +213,17 @@
             imgPreview.src = oFREvent.target.result;
         };
     }
-    function previewImageFull() {
+    function previewImage2() {
         const foto_full_badan = document.querySelector("#foto_full_badan");
-        const imgPreviewfull = document.querySelector(".img-previewfull");
+        const imgPreview2 = document.querySelector(".img-preview2");
 
-        imgPreviewfull.style.display = "block";
+        imgPreview2.style.display = "block";
 
         const oFReader = new FileReader();
         oFReader.readAsDataURL(foto_full_badan.files[0]);
 
         oFReader.onload = function (oFREvent) {
-            imgPreviewfull.src = oFREvent.target.result;
+            imgPreview2.src = oFREvent.target.result;
         };
     }
 </script>

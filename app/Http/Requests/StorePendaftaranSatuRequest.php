@@ -22,15 +22,11 @@ class StorePendaftaranSatuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama' => 'required|unique:anggota|max:255',
-            'tempat_lahir' => 'required|max:255',
-            'tanggal_lahir' => 'required',
-            'alamat' => 'required|max:255',
-            'nomor' => 'required|max:255',
-            'cabang_daerah' => 'required|max:255',
-            'tingkat' => 'required|max:255',
-            'foto_setengah_badan' => 'required|image|file',
-            'foto_full_badan' => 'required|image|file',
+            'nama' => 'required',
+            'role' => 'required',
+            'cabang_daerah' => 'required',
+            'username' => 'required|max:255|unique:akun,username,',
+            'foto' => 'image|file',
         ];
     }
 }

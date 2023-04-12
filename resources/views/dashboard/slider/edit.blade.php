@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.main') @section('container')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Data Profil</h1>
+<h1 class="h3 mb-2 text-gray-800">Data Slider</h1>
 <p class="mb-4">
     Ubah data pada form dibawah ini untuk update data pada tampilan slider web
 </p>
@@ -26,9 +26,7 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-danger">
             Edit Data Profil
-            <a
-                href="/dashboard/visi-misi/visi"
-                class="btn btn-sm btn-danger float-end"
+            <a href="/dashboard/slider" class="btn btn-sm btn-danger float-end"
                 >Batal</a
             >
         </h6>

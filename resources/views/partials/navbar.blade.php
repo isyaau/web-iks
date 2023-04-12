@@ -6,7 +6,9 @@
             width="30"
             class="d-inline-block align-text-top mx-3"
         />
-        <a class="navbar-brand text-light" href="/">Pendaftaran Warga IKS PI</a>
+        <a class="navbar-brand text-light" href="/"
+            >Sekretariat IKS PI Pusat Madiun</a
+        >
         <button
             class="navbar-toggler"
             type="button"

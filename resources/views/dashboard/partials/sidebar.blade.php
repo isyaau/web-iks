@@ -36,10 +36,9 @@
             <span>Dashboard</span></a
         >
     </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider" />
-
+    @if(auth()->user()->role==1)
     <!-- Heading -->
     <div class="sidebar-heading">Halaman Utama</div>
 
@@ -82,17 +81,17 @@
             class="nav-link collapsed"
             href="#"
             data-toggle="collapse"
-            data-target="#collapseTwo"
+            data-target="#collapseOne"
             aria-expanded="true"
-            aria-controls="collapseTwo"
+            aria-controls="collapseOne"
         >
             <i class="bi bi-ui-checks"></i>
             <span>Pendaftaran</span>
         </a>
         <div
-            id="collapseTwo"
+            id="collapseOne"
             class="collapse"
-            aria-labelledby="headingTwo"
+            aria-labelledby="headingOne"
             data-parent="#accordionSidebar"
         >
             <div class="bg-white py-2 collapse-inner rounded">
@@ -116,7 +115,47 @@
             <span>Akun</span></a
         >
     </li>
+    @else
+    <!-- Heading -->
+    <div class="sidebar-heading">Pendaftaran</div>
 
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li
+        class="nav-item {{ request()->segment('2')==''||request()->segment('2')=='pendaftaran' ? 'active' : '' }}"
+    >
+        <a
+            class="nav-link collapsed"
+            href="#"
+            data-toggle="collapse"
+            data-target="#collapseTwo"
+            aria-expanded="true"
+            aria-controls="collapseTwo"
+        >
+            <i class="bi bi-ui-checks"></i>
+            <span>Pendaftaran</span>
+        </a>
+        <div
+            id="collapseTwo"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+        >
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Tingkat:</h6>
+                <a
+                    class="collapse-item"
+                    href="/dashboard/pendaftaran/pendaftaran-tk-1"
+                    >Tingkat 1</a
+                >
+                <a
+                    class="collapse-item"
+                    href="/dashboard/pendaftaran/pendaftaran-tk-2"
+                    >Tingkat 2</a
+                >
+            </div>
+        </div>
+    </li>
+    @endif
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block" />
 

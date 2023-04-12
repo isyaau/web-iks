@@ -16,7 +16,7 @@
             <div class="col">{{ $visi->isi }}</div>
         </div>
         </p>
-        <a href="/dashboard/visi-misi/visi" class="btn btn-primary">Kembali</a>
+        <a href="/dashboard/slider" class="btn btn-primary">Kembali</a>
     </div>
 </div>
 @endsection

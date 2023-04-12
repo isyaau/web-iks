@@ -2,11 +2,7 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Data Pendaftar Tingkat 2</h1>
 <p class="mb-4">
-    DataTables is a third party plugin that is used to generate the demo table
-    below. For more information about DataTables, please visit the
-    <a target="_blank" href="https://datatables.net"
-        >official DataTables documentation</a
-    >.
+    Silahkan ubah data form dibawah ini untuk melakukan update akun pengguna
 </p>
 
 <!-- DataTales Example -->
@@ -39,6 +35,22 @@
             >
                 @method('put') @csrf
                 <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <select
+                        class="form-select @error('role') is-invalid @enderror"
+                        name="role"
+                        required
+                    >
+                        <option value="{{ old('role', $akun->role) }}" selected>
+                            @if(old('role', $akun->role)==1) Administrator
+                            @elseif(old('role', $akun->role)==2) Ketua Cabang
+                            Daerah @else Belum Disesuaikan @endif
+                        </option>
+                        <option value="1">Administrator</option>
+                        <option value="2">Ketua Cabang Daerah</option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
                     <input
                         type="text"
@@ -49,6 +61,22 @@
                         value="{{ old('nama', $akun->nama) }}"
                     />
                     @error('nama')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="cabang_daerah" class="form-label">Cabang Daerah</label>
+                    <input
+                        type="text"
+                        class="form-control @error('cabang_daerah') is-invalid @enderror"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        name="cabang_daerah"
+                        value="{{ old('cabang_daerah', $akun->cabang_daerah) }}"
+                    />
+                    @error('cabang_daerah')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

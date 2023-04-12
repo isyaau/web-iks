@@ -2,11 +2,8 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Data Pendaftar Tingkat 2</h1>
 <p class="mb-4">
-    DataTables is a third party plugin that is used to generate the demo table
-    below. For more information about DataTables, please visit the
-    <a target="_blank" href="https://datatables.net"
-        >official DataTables documentation</a
-    >.
+    Silahkan ubah data pada form dibawah ini untuk melakukan update data anggota
+    tingkat 2
 </p>
 
 <!-- DataTales Example -->
@@ -57,6 +54,11 @@
                         <option value="1">Diverifikasi</option>
                         <option value="2">Belum Diverifikasi</option>
                     </select>
+                    @error('nama')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
