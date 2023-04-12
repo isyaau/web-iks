@@ -10,5 +10,4 @@ class Akun extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'akun';
-    public $timestamps = false;
 }

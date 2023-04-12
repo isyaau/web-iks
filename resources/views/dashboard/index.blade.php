@@ -118,7 +118,7 @@
             </div>
         </div>
     </div>
-
+    @if(auth()->user()->role==1)
     <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
@@ -145,6 +145,7 @@
         </div>
     </div>
 </div>
+@else @endif
 
 <!-- Content Row -->
 
@@ -325,12 +326,12 @@
                 <div class="mt-4 text-center small">
                     <span class="mr-2">
                         <i class="fas fa-circle text-danger"></i> Terverifikasi
-                        ({{ $jumlahTingkat1 }}
+                        ({{ $jumlahAnggotaverif }}
                         Pendaftar)
                     </span>
                     <span class="mr-2">
                         <i class="fas fa-circle text-seccondary"></i> Belum
-                        Terverifikasi ({{ $jumlahTingkat2 }}
+                        Terverifikasi ({{ $jumlahAnggotanoverif }}
                         Pendaftar)
                     </span>
                 </div>

@@ -10,5 +10,4 @@ class Slider extends Model
     use HasFactory;
     protected $guarded = ['id'];
     protected $table = 'slider';
-    public $timestamps = false;
 }

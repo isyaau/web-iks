@@ -14,7 +14,7 @@ class SliderController extends Controller
     public function index()
     {
         return view('dashboard.slider.index', [
-            'slider' => Slider::all()
+            'slider' => Slider::latest()->get()
         ]);
     }
 

@@ -17,7 +17,7 @@ class AkunController extends Controller
     public function index()
     {
         return view('dashboard.akun.index', [
-            'akun' => Akun::all()
+            'akun' => Akun::latest()->get()
         ]);
     }
 

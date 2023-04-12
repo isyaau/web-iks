@@ -26,7 +26,7 @@ class StorePendaftaranDuaRequest extends FormRequest
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required',
             'alamat' => 'required|max:255',
-            'nomor' => 'required|numeric|max:255',
+            'nomor' => 'required|numeric|digits_between:1,13',
             'angkatan' => 'required|max:255',
             'foto_setengah_badan' => 'required|image|file',
             'foto_full_badan' => 'required|image|file',

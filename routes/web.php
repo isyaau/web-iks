@@ -33,8 +33,8 @@ use App\Http\Controllers\PendaftaranSatuController;
 Route::get('/', function () {
     return view('index', [
         'beranda' => Beranda::where('id', 1)->get(),
-        'slider' => Slider::all(),
-        'jumlahSlider' => Slider::all()->count()
+        'slider' => Slider::latest()->get(),
+        'jumlahSlider' => Slider::latest()->count()
 
     ]);
 });
@@ -72,17 +72,17 @@ Route::get('/dashboard/index', function () {
         $jumlahAnggotaverif = Anggota::all()->where('status', 1)->count();
         $jumlahAnggotanoverif = Anggota::all()->where('status', 2)->count();
         $jumlahAkun = Akun::all()->count();
-        $PendaftarAnggota = Anggota::orderBy('created_at', 'desc')->get();
+        $pendaftarAnggota = Anggota::orderBy('created_at', 'desc')->get();
     } else {
         $jumlahTingkat1 = Anggota::where('tingkat', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
         $jumlahTingkat1verif = Anggota::where('tingkat', 1)->where('status', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
         $jumlahTingkat1noverif = Anggota::where('tingkat', 1)->where('status', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
         $jumlahTingkat2 = Anggota::where('tingkat', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
-        $jumlahTingkat2verif = Anggota::where('tingkat', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahTingkat2verif = Anggota::where('tingkat', 2)->where('status', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
         $jumlahTingkat2noverif = Anggota::where('tingkat', 2)->where('status', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
-        $jumlahAnggota =  Anggota::all()->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
-        $jumlahAnggotaverif = Anggota::all()->where('status', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
-        $jumlahAnggotanoverif = Anggota::all()->where('status', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahAnggota =  Anggota::where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahAnggotaverif = Anggota::where('status', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
+        $jumlahAnggotanoverif = Anggota::where('status', 2)->where('cabang_daerah', auth()->user()->cabang_daerah)->count();
         $jumlahAkun = Akun::all()->count();
         $pendaftarAnggota = Anggota::where('cabang_daerah', auth()->user()->cabang_daerah)->orderBy('created_at', 'desc')->get();
     }

@@ -21,7 +21,7 @@ class AnggotaSatuController extends Controller
     public function index()
     {
         return view('dashboard.anggota_1.index', [
-            'anggota' => Anggota::where('tingkat', 1)->get()
+            'anggota' => Anggota::where('tingkat', 1)->latest()->get()
         ]);
     }
 
@@ -89,7 +89,7 @@ class AnggotaSatuController extends Controller
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required',
             'alamat' => 'required|max:255',
-            'nomor' => 'required|numeric|max:255',
+            'nomor' => 'required|numeric|digits_between:1,13',
             'cabang_daerah' => 'required|max:255',
             'angkatan' => 'required|max:255',
             'status' => 'required|max:255',

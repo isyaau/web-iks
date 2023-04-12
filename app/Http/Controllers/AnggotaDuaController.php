@@ -16,7 +16,7 @@ class AnggotaDuaController extends Controller
     public function index()
     {
         return view('dashboard.anggota_2.index', [
-            'anggota' => Anggota::where('tingkat', 2)->get()
+            'anggota' => Anggota::where('tingkat', 2)->latest()->get()
         ]);
     }
 
@@ -40,7 +40,7 @@ class AnggotaDuaController extends Controller
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required',
             'alamat' => 'required|max:255',
-            'nomor' => 'required|numeric|max:255',
+            'nomor' => 'required|numeric|digits_between:1,13',
             'cabang_daerah' => 'required|max:255',
             'angkatan' => 'required|max:255',
             'status' => 'required|max:255',
