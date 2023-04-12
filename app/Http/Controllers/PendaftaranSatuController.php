@@ -23,7 +23,7 @@ class PendaftaranSatuController extends Controller
     public function index()
     {
         return view('dashboard.pendaftaran_1.index', [
-            'anggota' => Anggota::where('tingkat', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->get()
+            'anggota' => Anggota::where('tingkat', 1)->where('cabang_daerah', auth()->user()->cabang_daerah)->latest()->get()
         ]);
     }
 
@@ -76,7 +76,7 @@ class PendaftaranSatuController extends Controller
      */
     public function edit(Anggota $anggota, $id)
     {
-        $anggota = $anggota->find($id)->latest();
+        $anggota = $anggota->find($id);
         return view('dashboard.pendaftaran_1.edit', [
             // 'txtid' => $id_warga,
             'anggota' => $anggota
@@ -93,7 +93,7 @@ class PendaftaranSatuController extends Controller
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required',
             'alamat' => 'required|max:255',
-            'nomor' => 'required|max:255',
+            'nomor' => 'required|numeric|digits_between:1,13',
             'angkatan' => 'required|max:255',
             'foto_setengah_badan' => 'image|file',
             'foto_full_badan' => 'image|file',

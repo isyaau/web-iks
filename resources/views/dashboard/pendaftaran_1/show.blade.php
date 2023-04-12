@@ -51,7 +51,7 @@
         </div>
 
         </p>
-        <a href="/dashboard/anggota/anggota-tk-1" class="btn btn-primary">Kembali</a>
+        <a href="/dashboard/pendaftaran/pendaftaran-tk-1" class="btn btn-primary">Kembali</a>
     </div>
 </div>
 @endsection

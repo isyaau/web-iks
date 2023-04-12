@@ -26,7 +26,7 @@ class StoreAnggotaDuaRequest extends FormRequest
             'tempat_lahir' => 'required|max:255',
             'tanggal_lahir' => 'required',
             'alamat' => 'required|max:255',
-            'nomor' => 'required|max:255',
+            'nomor' => 'required|numeric|max:255',
             'cabang_daerah' => 'required|max:255',
             'angkatan' => 'required|max:255',
             'status' => 'required|max:255',
