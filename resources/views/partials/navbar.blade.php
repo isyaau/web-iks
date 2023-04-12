@@ -48,17 +48,13 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a
-                                class="dropdown-item"
-                                href="/pendaftaran-tingkat-1/create"
+                            <a class="dropdown-item" href="/login"
                                 >Warga Tingkat 1</a
                             >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
-                            <a
-                                class="dropdown-item"
-                                href="/pendaftaran-tingkat-2/create"
+                            <a class="dropdown-item" href="/login"
                                 >Warga Tingkat 2</a
                             >
                         </li>
